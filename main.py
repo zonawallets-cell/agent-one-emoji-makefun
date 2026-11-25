@@ -67,6 +67,8 @@ def main():
         raw = handle.read()
     if raw != EMOJI.encode("utf-8"):
         raise ValueError("written file does not match the chosen emoji")
+    if os.path.getsize(path) != len(EMOJI.encode("utf-8")):
+        raise ValueError("written file size does not match the chosen emoji")
     validate(raw.decode("utf-8"))
     print("wrote %s (%d bytes)" % (path, len(raw)))
 
